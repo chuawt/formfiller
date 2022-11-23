@@ -4,7 +4,7 @@
 
 
 Uses cases:
-- HR dept: Leave form, Claim form
+- HR dept: Leave form, Claim form, certificates
 - Finance dept: Purchase requisition form
 - Sales dept: Customer form
 - Customer service dept: Feedback form
@@ -42,7 +42,7 @@ The purpose of this project is to:
 
 
 ## Screenshots
-
+![](https://user-images.githubusercontent.com/25447529/203463209-77cf0281-d289-4738-9705-17acb5f6db66.png)
 
 ## Setup
 If you don't have pandas or docxtpl, using pip to install them:
@@ -56,7 +56,7 @@ If you don't have pandas or docxtpl, using pip to install them:
 1. Make sure that the headers are only one word (i.e. no spaces allowed).
 1. Name all images as "img_<filename>" and make sure that they are all one word. 
 1. The headers of the first worksheet of the workbook and the image names then becomes the stored variables.
-1. In the `templates` folder, add in .docx files as templates. For each of the .docx files, use the double brackets {{ }} syntax as a placeholder, e.g. {{ Agent }}, {{ Date }}, {{ img_me }}  
+1. In the `templates` folder, add in .docx files as templates. For each of the .docx files, use the double brackets {{ }} syntax as a placeholder, e.g. {{ Name }}, {{ Date }}, {{ img_fire }}  
 1. Run the script mentioned in the below section. 
 1. The output files will be in a new `outputs` folder.
 
