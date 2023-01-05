@@ -17,8 +17,8 @@ os.makedirs('outputs')
 # Loop through `templates` folder to get the templates
 for dirpath, dirnames, filenames in os.walk('templates'):
     for filename in filenames:
-        # Ignore any file that is not a .docx
-        if not filename.endswith('.docx'):
+        # Ignore any file that is not a .docx or .pdf
+        if not os.path.splitext(filename)[-1] in ['.docx', '.pdf']:
             continue
         file = os.path.join(dirpath, filename)
         files.append(file)
@@ -34,9 +34,23 @@ data_df.dropna(axis=1, how='all', inplace=True)
 # Get variables from `data` workbook
 variables = data_df.columns.to_list()
 
+# Create a subfolder
+subfolder_path = 'outputs/new_folder'
+if not os.path.exists(subfolder_path):
+    os.makedirs(subfolder_path)
+
 # Loop through each template file
 for file in files:
 
+    # If PDF file, add name as the end of the file, and continue to next file
+    if os.path.splitext(file)[-1] == '.pdf':
+        # Save document using first column of data workbook as identifier
+        file_name_without_extension = Path(file).stem
+        doc_name = f'{file_name_without_extension}-{context[variables[0]]}.pdf'
+        shutil.copy(file, f'{subfolder_path}/{doc_name}')
+        print('Creating: ' + doc_name )
+        continue
+    
     # Open the Word document as a template
     template = DocxTemplate(file)
 
@@ -75,7 +89,10 @@ for file in files:
         # Save document using first column of data workbook as identifier
         file_name_without_extension = Path(file).stem
         doc_name = f'{file_name_without_extension}-{context[variables[0]]}.docx'
-        template.save('outputs/' + doc_name)
+        template.save(f'{subfolder_path}/{doc_name}')
         print('Creating: ' + doc_name )
+
+# Rename folder
+os.rename(subfolder_path, f'outputs/{context[variables[0]]}')
 
 print('Documents successfully rendered.')

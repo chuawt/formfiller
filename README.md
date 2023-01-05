@@ -39,7 +39,9 @@ The purpose of this project is to:
 ## Features
 - Can insert strings, dates, and numbers from each row of an Excel worksheet to a Word document (i.e. filling up the form)
 - Can also insert images such as logos, signatures, etc.
-
+- Excel file can be any name.
+- Word documents accepted as templates, while PDF files will simply have the identifier label attached at the end of filename.
+- Output files are now in their own subfolders.
 
 ## Screenshots
 ![](https://user-images.githubusercontent.com/25447529/203463209-77cf0281-d289-4738-9705-17acb5f6db66.png)
@@ -70,7 +72,7 @@ If you don't have pandas or docxtpl, using pip to install them:
 
 # Project Status
 Project is: _completed_.
-Version: 1.0.0
+Version: 1.2.0
 
 
 ## To Do
